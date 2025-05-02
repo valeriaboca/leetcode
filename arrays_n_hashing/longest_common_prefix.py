@@ -1,6 +1,7 @@
 
 from typing import List
 
+# 14. Longest Common Prefix
 def longestCommonPrefix(strs: List[str]) -> str:
         prefix = strs[0]
         for i in range(len(prefix)):
