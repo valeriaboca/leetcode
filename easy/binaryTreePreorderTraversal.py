@@ -45,20 +45,30 @@ def build_tree(values: List[Optional[int]]) -> Optional[TreeNode]:
 #             if node.left:
 #                 stack.append(node.left)
 #         return result
+
+# Cleaner (self contained) solution
+
+# def preorderTraversal(root: Optional[TreeNode]) -> List[int]:
+#         result = []
+#         if root is None:
+#             return result
+
+#         stack = [root]
+#         while stack:
+#             node = stack.pop()
+#             if node:
+#                 result.append(node.val)
+
+#                 stack.append(node.right)
+#                 stack.append(node.left)
+#         return result
+
+# Recursive solution
+
 def preorderTraversal(root: Optional[TreeNode]) -> List[int]:
-        result = []
         if root is None:
-            return result
-
-        stack = [root]
-        while stack:
-            node = stack.pop()
-            if node:
-                result.append(node.val)
-
-                stack.append(node.right)
-                stack.append(node.left)
-        return result
+            return []
+        return [root.val] + preorderTraversal(root.left) + preorderTraversal(root.right)
 
 root_values = [1,2,3,4,5,None,8,None,None,6,7,9]
 root = build_tree(root_values)
