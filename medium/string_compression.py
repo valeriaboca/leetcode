@@ -2,27 +2,26 @@ from typing import List
 
 # 443. String Compression
 def compress(chars: List[str]) -> int:
-        i, result = 0, 0
+        read, write = 0, 0
 
-        while i < len(chars):
-            curr_char = chars[i]
-            occur = 0
+        while read < len(chars):
+            current_char = chars[read]
+            count = 0
 
-            while (i < len(chars)) and (chars[i] == curr_char):
-                occur += 1
-                i += 1
+            while read < len(chars) and chars[read] == current_char:
+                count += 1
+                read += 1
 
-            chars[result] = curr_char
-            result += 1
+            chars[write] = current_char
+            write += 1
 
-            if occur > 1:
-                occurStr = str(occur)
+            if count > 1:
+                count_str = str(count)
+                for digit in count_str:
+                    chars[write] = digit
+                    write += 1
 
-                for j in range(len(occurStr)):
-                    chars[result] = occurStr[j]
-                    result += 1
-
-        return result
+        return write
 
 chars = ["a","a","b","b","c","c","c"]
 print(compress(chars))
